@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estado de Situación de tu Negocio | RUMBO</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Jura:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --navy:    #152038;
+  --navy-md: #1c2e4a;
+  --navy-lt: #253555;
+  --gold:    #C49A3C;
+  --gold-lt: #d4ae5a;
+  --bg:      #F5F5F3;
+  --white:   #FFFFFF;
+  --text:    #2D2D2D;
+  --muted:   #6B7280;
+  --oscuro:  #0d1624;
+  --red:     #B91C1C;
+  --redbg:   #FEF2F2;
+  --redbord: #FECACA;
+  --warn:    #92400E;
+  --warnbg:  #FFFBEB;
+  --warnbord:#FDE68A;
+  --ok:      #14532D;
+  --okbg:    #F0FDF4;
+  --okbord:  #BBF7D0;
+  --shadow:  0 4px 28px rgba(21,32,56,0.12);
+  --shadow-sm:0 2px 12px rgba(21,32,56,0.08);
+  --r: 14px;
+  --r-sm: 8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Jura','Segoe UI',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;line-height:1.6
+}
+h1,h2,h3,.heading{
+  font-family:'Bricolage Grotesque','Arial Black',system-ui,sans-serif;
+}
+
+/* ── HEADER ─────────────────────────────────── */
+.header{
+  background:var(--navy);
+  padding:0 28px;
+  display:flex;align-items:center;
+  height:64px;gap:0;
+  border-bottom:3px solid var(--gold);
+}
+.logo-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.logo-arrow{
+  color:var(--gold);font-size:13px;
+  margin-left:42px;margin-bottom:-3px;
+  line-height:1;letter-spacing:0
+}
+.logo-name{
+  font-family:'Bricolage Grotesque','Arial Black',sans-serif;
+  font-weight:800;font-size:20px;
+  color:#fff;letter-spacing:5px;line-height:1
+}
+.logo-sub{
+  font-family:'Jura',sans-serif;
+  font-size:7.5px;color:rgba(196,154,60,.85);
+  letter-spacing:3.5px;text-transform:uppercase;
+  margin-top:2px
+}
+.header-right{
+  margin-left:auto;
+  font-family:'Jura',sans-serif;
+  font-size:11px;color:rgba(255,255,255,.55);
+  letter-spacing:.5px
+}
+
+/* ── HERO ────────────────────────────────────── */
+.hero{
+  max-width:660px;margin:0 auto;
+  padding:52px 24px 12px;text-align:center
+}
+.hero-label{
+  display:inline-block;
+  font-family:'Jura',sans-serif;
+  font-size:10px;font-weight:600;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid rgba(196,154,60,.35);
+  padding:5px 16px;border-radius:99px;
+  margin-bottom:22px
+}
+.hero h1{
+  font-size:clamp(26px,5vw,40px);
+  font-weight:800;color:var(--navy);
+  line-height:1.15;margin-bottom:14px
+}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{
+  font-family:'Jura',sans-serif;
+  font-size:15px;color:var(--muted);
+  max-width:460px;margin:0 auto
+}
+
+/* ── MAIN GRID ───────────────────────────────── */
+.main{
+  max-width:840px;margin:0 auto;
+  padding:32px 20px 20px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:20px;align-items:start
+}
+@media(max-width:640px){.main{grid-template-columns:1fr}}
+
+/* ── CARDS ───────────────────────────────────── */
+.card{
+  background:var(--white);border-radius:var(--r);
+  padding:28px;box-shadow:var(--shadow-sm)
+}
+.card-title{
+  font-family:'Jura',sans-serif;
+  font-size:10px;font-weight:600;
+  text-transform:uppercase;letter-spacing:2px;
+  color:var(--gold);margin-bottom:22px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(196,154,60,.2)
+}
+
+/* ── FIELDS ──────────────────────────────────── */
+.field{margin-bottom:18px}
+.field label{
+  display:block;
+  font-family:'Jura',sans-serif;
+  font-size:12px;font-weight:600;
+  color:var(--navy);margin-bottom:6px;letter-spacing:.3px
+}
+.field label .sub{font-weight:400;color:var(--muted)}
+.input-wrap{position:relative}
+.input-wrap .pre{
+  position:absolute;left:13px;top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);font-size:14px;font-weight:600;
+  font-family:'Jura',sans-serif;pointer-events:none
+}
+.input-wrap .suf{
+  position:absolute;right:13px;top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);font-size:14px;font-weight:600;
+  font-family:'Jura',sans-serif;pointer-events:none
+}
+.field input{
+  width:100%;padding:11px 14px;
+  border:1.5px solid #DDE2E8;border-radius:var(--r-sm);
+  font-size:15px;font-family:'Jura',sans-serif;
+  color:var(--text);background:#fff;outline:none;
+  transition:border-color .2s
+}
+.field input:focus{border-color:var(--navy)}
+.field input.has-pre{padding-left:28px}
+.field input.has-suf{padding-right:32px}
+.field .hint{
+  font-family:'Jura',sans-serif;
+  font-size:11px;color:var(--muted);
+  margin-top:5px;line-height:1.4
+}
+.marcacion-helper{
+  margin-top:8px;padding:9px 13px;
+  background:rgba(21,32,56,.05);
+  border-left:3px solid var(--gold);
+  border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-size:12px;font-family:'Jura',sans-serif;
+  color:var(--navy-md);display:none;line-height:1.5
+}
+
+/* ── CV TOGGLE ───────────────────────────────── */
+.toggle-btn{
+  width:100%;display:flex;align-items:center;
+  justify-content:space-between;background:none;
+  border:1.5px dashed rgba(196,154,60,.45);
+  border-radius:var(--r-sm);padding:9px 14px;
+  cursor:pointer;
+  font-family:'Jura',sans-serif;
+  font-size:12px;font-weight:600;
+  color:var(--navy);transition:all .2s;margin-top:4px;
+  letter-spacing:.3px
+}
+.toggle-btn:hover{background:rgba(21,32,56,.04);border-color:var(--gold)}
+.toggle-arrow{transition:transform .25s;font-size:11px;color:var(--gold)}
+.toggle-arrow.open{transform:rotate(180deg)}
+.cv-section{display:none;padding-top:16px;border-top:1px solid #E8EBF0;margin-top:14px}
+.cv-section.open{display:block;animation:fadeIn .25s ease}
+
+/* ── IB CALLOUT ──────────────────────────────── */
+.ib-callout{
+  background:var(--warnbg);
+  border:1.5px solid var(--warnbord);
+  border-radius:var(--r-sm);
+  padding:11px 13px;margin-bottom:16px;
+  display:flex;gap:10px;align-items:flex-start
+}
+.ib-text{
+  font-family:'Jura',sans-serif;
+  font-size:12px;color:var(--warn);line-height:1.5
+}
+.ib-text strong{font-weight:600;display:block;margin-bottom:2px}
+
+/* ── RESULT CARD ─────────────────────────────── */
+.result-card{
+  background:var(--white);border-radius:var(--r);
+  padding:28px;box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;gap:18px
+}
+.result-empty{
+  text-align:center;padding:40px 16px;
+  color:var(--muted);
+  font-family:'Jura',sans-serif;font-size:14px
+}
+.result-empty .ico{font-size:32px;margin-bottom:12px}
+.result-empty .eti{
+  font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(196,154,60,.7);
+  font-weight:600;margin-bottom:8px
+}
+
+/* ── RES PRINCIPAL ───────────────────────────── */
+.res-main{
+  text-align:center;padding:22px 16px;
+  border-radius:var(--r-sm);
+  border:2px solid transparent;transition:all .3s
+}
+.res-main.verde{background:var(--okbg);border-color:var(--okbord)}
+.res-main.amarillo{background:var(--warnbg);border-color:var(--warnbord)}
+.res-main.rojo{background:var(--redbg);border-color:var(--redbord)}
+.res-label{
+  font-family:'Jura',sans-serif;
+  font-size:10px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:5px
+}
+.res-valor{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:40px;font-weight:800;line-height:1;
+  transition:color .3s
+}
+.res-valor.verde{color:var(--ok)}
+.res-valor.amarillo{color:var(--warn)}
+.res-valor.rojo{color:var(--red)}
+.res-pct{
+  font-family:'Jura',sans-serif;
+  font-size:14px;font-weight:600;margin-top:5px
+}
+.res-pct.verde{color:var(--ok)}
+.res-pct.amarillo{color:var(--warn)}
+.res-pct.rojo{color:var(--red)}
+.res-gps{
+  font-family:'Jura',sans-serif;
+  font-size:11px;font-weight:600;margin-top:9px;
+  padding:5px 14px;border-radius:99px;
+  display:inline-block;letter-spacing:.8px;
+  text-transform:uppercase
+}
+.res-gps.verde{background:rgba(20,83,45,.1);color:var(--ok)}
+.res-gps.amarillo{background:rgba(146,64,14,.1);color:var(--warn)}
+.res-gps.rojo{background:rgba(185,28,28,.1);color:var(--red)}
+
+/* ── MINI GRID ───────────────────────────────── */
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini{background:var(--bg);border-radius:var(--r-sm);padding:12px 13px}
+.mini-name{
+  font-family:'Jura',sans-serif;
+  font-size:9px;font-weight:600;color:var(--muted);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:3px
+}
+.mini-val{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:17px;font-weight:700;color:var(--navy)
+}
+.mini-val small{
+  font-family:'Jura',sans-serif;
+  font-size:11px;font-weight:400;color:var(--muted)
+}
+.mini-note{
+  font-family:'Jura',sans-serif;
+  font-size:10px;color:var(--muted);
+  margin-top:2px;line-height:1.35
+}
+
+/* ── INDICIOS ────────────────────────────────── */
+.indicios-section{
+  max-width:840px;margin:0 auto;
+  padding:0 20px 24px
+}
+.indicios-title{
+  font-family:'Jura',sans-serif;
+  font-size:10px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:14px;padding-left:2px
+}
+.indicios-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px
+}
+@media(max-width:620px){.indicios-grid{grid-template-columns:1fr}}
+.indicio{
+  background:var(--white);border-radius:var(--r);
+  padding:22px 20px;box-shadow:var(--shadow-sm);
+  border-top:3px solid var(--gold)
+}
+.ind-num{
+  font-family:'Jura',sans-serif;
+  font-size:9px;font-weight:600;color:var(--gold);
+  text-transform:uppercase;letter-spacing:2px;margin-bottom:9px
+}
+.ind-tit{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:14px;font-weight:700;color:var(--navy);
+  margin-bottom:7px;line-height:1.3
+}
+.ind-txt{
+  font-family:'Jura',sans-serif;
+  font-size:12px;color:var(--muted);line-height:1.6
+}
+.ind-hl{color:var(--navy);font-weight:600}
+
+/* ── CTA ─────────────────────────────────────── */
+.cta-section{
+  max-width:840px;margin:0 auto;
+  padding:0 20px 64px
+}
+.cta-card{
+  background:var(--navy);
+  border-radius:var(--r);padding:36px 28px;
+  text-align:center;box-shadow:var(--shadow);
+  border-top:3px solid var(--gold)
+}
+.cta-label{
+  font-family:'Jura',sans-serif;
+  font-size:10px;font-weight:600;letter-spacing:2.5px;
+  text-transform:uppercase;color:rgba(196,154,60,.7);
+  margin-bottom:14px
+}
+.cta-card h2{
+  font-size:22px;font-weight:800;color:#fff;
+  margin-bottom:10px;line-height:1.25
+}
+.cta-card p{
+  font-family:'Jura',sans-serif;
+  font-size:14px;color:rgba(255,255,255,.65);
+  margin-bottom:26px;
+  max-width:400px;margin-left:auto;margin-right:auto;
+  line-height:1.6
+}
+.cta-btns{
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+  margin-bottom:20px
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 26px;border-radius:99px;
+  font-family:'Jura',sans-serif;
+  font-size:13px;font-weight:600;
+  letter-spacing:.4px;cursor:pointer;
+  border:none;text-decoration:none;transition:all .2s
+}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 6px 20px rgba(196,154,60,.3)}
+.btn-outline{background:transparent;color:rgba(255,255,255,.8);border:1.5px solid rgba(255,255,255,.25)}
+.btn-outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.5)}
+.cta-divider{
+  height:1px;background:rgba(255,255,255,.1);
+  margin:0 auto 16px;max-width:200px
+}
+.cta-contact{
+  font-family:'Jura',sans-serif;
+  font-size:11px;color:rgba(255,255,255,.4);
+  line-height:1.8
+}
+.cta-contact a{color:rgba(196,154,60,.7);text-decoration:none}
+.cta-contact a:hover{color:var(--gold)}
+
+.footer{
+  text-align:center;padding:16px 20px 32px;
+  font-family:'Jura',sans-serif;
+  font-size:10px;color:var(--muted);letter-spacing:.3px
+}
+.footer a{color:var(--muted);text-decoration:none}
+
+/* ── UTILS ───────────────────────────────────── */
+.hidden{display:none}
+.fade-in{animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo-wrap">
+    <div class="logo-arrow">▾</div>
+    <div class="logo-name">RUMBO</div>
+    <div class="logo-sub">Tu GPS Empresarial</div>
+  </div>
+  <div class="header-right">Diagnóstico de Gestión</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Diagnóstico gratuito · 3 datos · Resultado inmediato</div>
+  <h1>¿Sabés en qué <em>estado</em> está<br>tu negocio hoy?</h1>
+  <p>Antes de saber a dónde ir, hay que saber desde dónde se parte.<br>Tres datos y tenés un mapa real de tu situación.</p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- FORM -->
+  <div class="card">
+    <div class="card-title">Ingresá tus números</div>
+
+    <div class="field">
+      <label>Ventas del mes <span class="sub">(facturación total)</span></label>
+      <div class="input-wrap">
+        <span class="pre">$</span>
+        <input type="number" id="ventas" class="has-pre" placeholder="Ej: 800.000" min="0" oninput="calcular()">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Margen de marcación <span class="sub">(sobre el costo)</span></label>
+      <div class="input-wrap">
+        <input type="number" id="marcacion" class="has-suf" placeholder="Ej: 80" min="1" max="1000" oninput="calcular();mostrarHelperMarcacion()">
+        <span class="suf">%</span>
+      </div>
+      <div class="hint">Si comprás a $100 y vendés a $180, tu marcación es 80%</div>
+      <div class="marcacion-helper" id="helperMarcacion"></div>
+    </div>
+
+    <div class="field">
+      <label>Costos fijos del mes <span class="sub">(sueldos, alquiler, servicios)</span></label>
+      <div class="input-wrap">
+        <span class="pre">$</span>
+        <input type="number" id="costosF" class="has-pre" placeholder="Ej: 320.000" min="0" oninput="calcular()">
+      </div>
+      <div class="hint">Los que pagás todos los meses aunque las ventas bajen</div>
+    </div>
+
+    <!-- TOGGLE CV -->
+    <button class="toggle-btn" onclick="toggleCV()" type="button" id="toggleBtn">
+      <span id="toggleLabel">＋ Agregar costos variables</span>
+      <span class="toggle-arrow" id="toggleArrow">▾</span>
+    </button>
+
+    <div class="cv-section" id="cvSection">
+      <div class="ib-callout">
+        <div style="font-size:15px;flex-shrink:0;margin-top:1px">⚠️</div>
+        <div class="ib-text">
+          <strong>¿Ya incluiste Ingresos Brutos en tus cuentas?</strong>
+          Es el costo que más se olvida. Según tu actividad y provincia, está entre el 1,5% y el 5% de tus ventas — y se paga sobre lo que facturás, no sobre lo que ganás.
+        </div>
+      </div>
+      <div class="field">
+        <label>Ingresos Brutos <span class="sub">(alícuota sobre ventas)</span></label>
+        <div class="input-wrap">
+          <input type="number" id="ibPct" class="has-suf" placeholder="Ej: 3" min="0" max="20" step="0.5" oninput="calcular()">
+          <span class="suf">%</span>
+        </div>
+        <div class="hint" id="ibHint">Si no sabés tu alícuota, consultá con tu contador o probá con 3%</div>
+      </div>
+      <div class="field">
+        <label>Otros costos variables <span class="sub">(opcional)</span></label>
+        <div class="input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="otrosCV" class="has-pre" placeholder="Ej: 45.000" min="0" oninput="calcular()">
+        </div>
+        <div class="hint">Comisiones, fletes, empaques — lo que varía con cada venta</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-card" id="resultCard">
+    <div class="result-empty" id="resultEmpty">
+      <div class="ico">🧭</div>
+      <div class="eti">Rumbo · Tu GPS Empresarial</div>
+      <div>Completá los tres campos<br>para ver tu situación actual.</div>
+    </div>
+    <div id="resultContent" class="hidden">
+      <div class="res-main" id="resMain">
+        <div class="res-label">Resultado neto del mes</div>
+        <div class="res-valor" id="resValor">$0</div>
+        <div class="res-pct" id="resPct">0% de rentabilidad</div>
+        <div class="res-gps" id="resGps">🧭 GPS</div>
+      </div>
+      <div class="mini-grid">
+        <div class="mini">
+          <div class="mini-name">Punto de Equilibrio</div>
+          <div class="mini-val" id="miniPE">—</div>
+          <div class="mini-note" id="miniPEnote"></div>
+        </div>
+        <div class="mini">
+          <div class="mini-name">Margen sobre ventas</div>
+          <div class="mini-val" id="miniMC">—</div>
+          <div class="mini-note" id="miniMCnote"></div>
+        </div>
+        <div class="mini">
+          <div class="mini-name">Costo de mercadería</div>
+          <div class="mini-val" id="miniCM">—</div>
+          <div class="mini-note" id="miniCMnote"></div>
+        </div>
+        <div class="mini">
+          <div class="mini-name">Cobertura del PE</div>
+          <div class="mini-val" id="miniCob">—</div>
+          <div class="mini-note" id="miniCobnote"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- INDICIOS -->
+<div class="indicios-section hidden" id="indiciosSection">
+  <div class="indicios-title">🔍 Lo que tus números dicen entre líneas</div>
+  <div class="indicios-grid">
+    <div class="indicio">
+      <div class="ind-num">Indicio 01</div>
+      <div class="ind-tit" id="ind1tit"></div>
+      <div class="ind-txt" id="ind1txt"></div>
+    </div>
+    <div class="indicio">
+      <div class="ind-num">Indicio 02</div>
+      <div class="ind-tit" id="ind2tit"></div>
+      <div class="ind-txt" id="ind2txt"></div>
+    </div>
+    <div class="indicio">
+      <div class="ind-num">Indicio 03</div>
+      <div class="ind-tit" id="ind3tit"></div>
+      <div class="ind-txt" id="ind3txt"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section hidden" id="ctaSection">
+  <div class="cta-card">
+    <div class="cta-label">El diagnóstico es el punto de partida</div>
+    <h2>Tus números tienen un mensaje.<br>¿Querés saber qué hacer con ellos?</h2>
+    <p>En RUMBO transformamos la información en decisiones. Trabajamos con dueños y líderes para construir negocios rentables, ordenados y sostenibles.</p>
+    <div class="cta-btns">
+      <a href="https://coachsofiaf-eng.github.io/Rumbo/" target="_blank" class="btn btn-gold">Conocé RUMBO →</a>
+      <a href="https://wa.me/543764504726?text=Hola%2C%20hice%20el%20diagn%C3%B3stico%20y%20quiero%20hablar%20con%20RUMBO" target="_blank" class="btn btn-outline">💬 WhatsApp</a>
+    </div>
+    <div class="cta-divider"></div>
+    <div class="cta-contact">
+      <a href="https://coachsofiaf-eng.github.io/Rumbo/" target="_blank">coachsofiaf-eng.github.io/Rumbo</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:coachsofiaf@gmail.com">coachsofiaf@gmail.com</a>
+      &nbsp;·&nbsp;
+      +54 376 450-4726
+      <br>Posadas, Misiones, Argentina
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  © 2025 RUMBO Consultoría Empresarial · Sofía Fulquet ·
+  <a href="https://coachsofiaf-eng.github.io/Rumbo/" target="_blank">coachsofiaf-eng.github.io/Rumbo</a>
+</div>
+
+<script>
+// ── FORMAT ──────────────────────────────────────────────────────
+function fmt(v){
+  const a=Math.abs(v),s=v<0?'-':'';
+  if(a>=1000000)return s+'$'+(a/1000000).toFixed(1)+'M';
+  if(a>=1000)return s+'$'+(a/1000).toFixed(0)+'K';
+  return s+'$'+a.toFixed(0);
+}
+function fmtE(v){
+  const a=Math.abs(v),s=v<0?'-':'';
+  return s+'$'+a.toLocaleString('es-AR',{maximumFractionDigits:0});
+}
+
+// ── TOGGLE ───────────────────────────────────────────────────────
+function toggleCV(){
+  const sec=document.getElementById('cvSection');
+  const arr=document.getElementById('toggleArrow');
+  const open=sec.classList.toggle('open');
+  arr.classList.toggle('open',open);
+  document.getElementById('toggleLabel').textContent=open?'— Ocultar costos variables':'＋ Agregar costos variables';
+}
+
+// ── HELPER MARCACIÓN ────────────────────────────────────────────
+function mostrarHelperMarcacion(){
+  const m=parseFloat(document.getElementById('marcacion').value);
+  const el=document.getElementById('helperMarcacion');
+  if(!m||m<=0){el.style.display='none';return;}
+  el.style.display='block';
+  el.innerHTML='Por cada <strong>$100 de costo</strong>, vendés a <strong>$'+(100+m).toFixed(0)+'</strong> — ganás $'+m.toFixed(0)+' antes de costos fijos.';
+}
+
+// ── CALC ─────────────────────────────────────────────────────────
+function calcular(){
+  const ventas   = parseFloat(document.getElementById('ventas').value)    || 0;
+  const marcacion= parseFloat(document.getElementById('marcacion').value) || 0;
+  const cf       = parseFloat(document.getElementById('costosF').value)   || 0;
+  const ibPct    = parseFloat(document.getElementById('ibPct').value)     || 0;
+  const otrosCV  = parseFloat(document.getElementById('otrosCV').value)   || 0;
+
+  if(ventas<=0||marcacion<=0){
+    document.getElementById('resultEmpty').classList.remove('hidden');
+    document.getElementById('resultContent').classList.add('hidden');
+    document.getElementById('indiciosSection').classList.add('hidden');
+    document.getElementById('ctaSection').classList.add('hidden');
+    return;
+  }
+
+  const costoMerch = ventas / (1 + marcacion/100);
+  const ibAbs      = ventas * ibPct / 100;
+  const mcAbs      = ventas - costoMerch - ibAbs - otrosCV;
+  const mcPct      = ventas>0 ? mcAbs/ventas*100 : 0;
+  const resultado  = mcAbs - cf;
+  const resultPct  = ventas>0 ? resultado/ventas*100 : 0;
+  const PE         = mcPct>0 ? cf/(mcPct/100) : Infinity;
+  const cobertura  = ventas>0 ? (ventas-PE)/ventas*100 : 0;
+
+  // IB hint
+  if(ibPct>0){
+    document.getElementById('ibHint').textContent='En tu negocio, Ingresos Brutos te cuesta '+fmt(ibAbs)+'/mes ('+ibPct+'% sobre '+fmt(ventas)+').';
+  } else {
+    document.getElementById('ibHint').textContent='Si no sabés tu alícuota, consultá con tu contador o probá con 3%';
+  }
+
+  // Color
+  let color='amarillo',gps='🟡 Recalculando ruta';
+  if(resultado>0&&resultPct>=8){color='verde';gps='🟢 En ruta';}
+  else if(resultado<=0){color='rojo';gps='🔴 Fuera del camino';}
+
+  // Show result
+  document.getElementById('resultEmpty').classList.add('hidden');
+  const rc=document.getElementById('resultContent');
+  if(rc.classList.contains('hidden')){rc.classList.remove('hidden');rc.classList.add('fade-in');}
+
+  document.getElementById('resMain').className='res-main '+color;
+  const rv=document.getElementById('resValor');
+  rv.className='res-valor '+color; rv.textContent=fmtE(resultado);
+  const rp=document.getElementById('resPct');
+  rp.className='res-pct '+color; rp.textContent=resultPct.toFixed(1)+'% de rentabilidad';
+  const rg=document.getElementById('resGps');
+  rg.className='res-gps '+color; rg.textContent=gps;
+
+  // Mini
+  document.getElementById('miniPE').innerHTML=PE===Infinity?'No cubre':fmt(PE);
+  document.getElementById('miniPEnote').textContent=PE===Infinity?'El margen no alcanza para cubrir costos fijos':
+    (ventas>=PE?'Vendés '+fmt(ventas-PE)+' por encima del PE':'Te faltan '+fmt(PE-ventas)+' para cubrir costos');
+  document.getElementById('miniMC').innerHTML=mcPct.toFixed(1)+'<small>%</small>';
+  document.getElementById('miniMCnote').textContent='De cada $100 vendidos, $'+mcPct.toFixed(0)+' quedan para cubrir estructura';
+  document.getElementById('miniCM').innerHTML=fmt(costoMerch);
+  document.getElementById('miniCMnote').textContent=(costoMerch/ventas*100).toFixed(0)+'% de tus ventas son costo de mercadería';
+  const cobTxt=cobertura>0?'+'+cobertura.toFixed(0)+'% sobre PE':cobertura.toFixed(0)+'% bajo PE';
+  document.getElementById('miniCob').innerHTML=cobTxt;
+  document.getElementById('miniCobnote').textContent=cobertura>0?
+    'Las ventas pueden caer '+cobertura.toFixed(0)+'% antes de entrar en pérdida':
+    'Estás operando por debajo del punto de equilibrio';
+
+  // Indicios
+  document.getElementById('indiciosSection').classList.remove('hidden');
+  document.getElementById('ctaSection').classList.remove('hidden');
+
+  // 1: efecto marcación +5
+  const res5=(ventas-(ventas/(1+(marcacion+5)/100)))-ibAbs-otrosCV-cf;
+  const m5=res5-resultado;
+  document.getElementById('ind1tit').textContent='Antes de vender más, ¿el margen alcanza?';
+  if(m5>0){
+    document.getElementById('ind1txt').innerHTML=
+      'Subir la marcación 5 puntos (de '+marcacion.toFixed(0)+'% a '+(marcacion+5).toFixed(0)+'%) mejoraría tu resultado en <span class="ind-hl">'+fmt(m5)+'/mes</span> sin vender un peso más. Son <span class="ind-hl">'+fmt(m5*12)+'/año</span> de diferencia pura.';
+  } else {
+    document.getElementById('ind1txt').innerHTML=
+      'Con tu estructura actual, la palanca no está solo en el margen. Hay que revisar qué parte del negocio está traccionando y cuál está consumiendo resultado.';
+  }
+
+  // 2: ventas para 10%
+  document.getElementById('ind2tit').textContent='¿Cuánto tenés que vender para ganar bien?';
+  if(mcPct>10){
+    const vObj=cf/(mcPct/100-0.10);
+    const diff=vObj-ventas;
+    if(diff>0){
+      document.getElementById('ind2txt').innerHTML=
+        'Para llegar al 10% de rentabilidad necesitás vender <span class="ind-hl">'+fmt(vObj)+'/mes</span> — <span class="ind-hl">'+fmt(diff)+' más</span> que hoy. La pregunta es si el mercado lo permite o si hay que construir esa demanda.';
+    } else {
+      document.getElementById('ind2txt').innerHTML=
+        'Tus números dicen que ya superás el 10% de rentabilidad. Ahora la pregunta es cómo <span class="ind-hl">sostener esto con escala</span> — porque crecer sin estructura puede erosionar este margen rápido.';
+    }
+  } else {
+    document.getElementById('ind2txt').innerHTML=
+      'Con el margen operativo actual, cada peso de venta adicional contribuye poco al resultado. <span class="ind-hl">Antes de vender más, hay que entender por qué el margen no alcanza.</span>';
+  }
+
+  // 3: IB o estructura
+  if(ibPct===0){
+    const ibEj=ventas*3/100;
+    document.getElementById('ind3tit').textContent='¿Ingresos Brutos está en tus cuentas?';
+    document.getElementById('ind3txt').innerHTML=
+      'Si tu alícuota fuera del 3%, estarías pagando <span class="ind-hl">'+fmt(ibEj)+'/mes</span> que hoy no aparece en tus números. Eso cambiaría tu resultado real a <span class="ind-hl">'+fmtE(resultado-ibEj)+'</span>. ¿Ese costo está reflejado en tus precios?';
+  } else {
+    const cfPct=cf/ventas*100;
+    document.getElementById('ind3tit').textContent='Tu estructura: ¿trabaja para vos?';
+    if(cfPct>mcPct){
+      document.getElementById('ind3txt').innerHTML=
+        'Tus costos fijos ('+cfPct.toFixed(0)+'% de ventas) superan lo que queda después de mercadería e impuestos ('+mcPct.toFixed(0)+'%). <span class="ind-hl">La estructura consume más de lo que el negocio genera.</span> Ahí está la causa raíz.';
+    } else {
+      document.getElementById('ind3txt').innerHTML=
+        'Con IB incluido, tu margen operativo real es del <span class="ind-hl">'+mcPct.toFixed(1)+'%</span>. ¿Aguanta una caída de ventas del 15-20% sin entrar en rojo? Si la respuesta te genera duda, hay trabajo por hacer.';
+    }
+  }
+}
+</script>
+</body>
+</html>
